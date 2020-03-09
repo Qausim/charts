@@ -1,24 +1,24 @@
 import React, { memo } from "react";
 import {
-  Line,
+  AreaChart as Chart,
+  ResponsiveContainer,
+  Area,
   XAxis,
   YAxis,
-  Legend,
-  Tooltip,
   CartesianGrid,
-  ResponsiveContainer,
-  LineChart as Chart
+  Tooltip,
+  Legend
 } from "recharts";
 import CustomizedAxisTick from "../CustomizedAxisTick";
 
-const LineChart = ({
+const AreaChart = ({
   data,
-  margin,
+  fills,
   xLabel,
+  margin,
   strokes,
-  dataKeys,
-  fontSize,
   xPadding,
+  dataKeys,
   wrapperStyle,
   wrapperClassName
 }) => {
@@ -30,23 +30,32 @@ const LineChart = ({
       style={wrapperStyle}
     >
       <ResponsiveContainer>
-        <Chart {...{ data, fontSize, margin }}>
+        <Chart
+          {...{
+            data,
+            margin
+          }}
+        >
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis
-            dataKey={xLabel}
-            padding={xPadding}
-            tick={CustomizedAxisTick}
             height={60}
+            dataKey={xLabel}
+            tick={CustomizedAxisTick}
+            padding={xPadding}
           />
           <YAxis />
           <Tooltip />
           <Legend />
           {dataKeys.map((dataKey, index) => (
-            <Line
-              stroke={strokes[index]}
+            <Area
               type="monotone"
-              dataKey={dataKey}
-              key={index}
+              {...{
+                dataKey,
+                key: index,
+                // stackId: 1,
+                fill: fills[index],
+                stroke: strokes[index]
+              }}
             />
           ))}
         </Chart>
@@ -55,4 +64,4 @@ const LineChart = ({
   );
 };
 
-export default memo(LineChart);
+export default memo(AreaChart);

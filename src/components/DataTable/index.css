@@ -1,0 +1,31 @@
+.parent-wrapper {
+}
+
+table {
+  width: 100%;
+}
+
+tr {
+  height: 40px;
+}
+
+tr:nth-child(odd) {
+  background: #eee;
+}
+
+tr:nth-child(even) {
+  background: #def;
+}
+
+thead tr {
+  background: #3ef !important;
+}
+
+th,
+td {
+  text-align: center;
+}
+
+th {
+  text-transform: capitalize;
+}

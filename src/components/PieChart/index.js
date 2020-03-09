@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 
 import {
   PieChart as Chart,
@@ -34,14 +34,7 @@ const renderCustomizedLabel = ({
   );
 };
 
-const PieChart = ({ wrapperClassName, wrapperStyle, colors }) => {
-  const data = [
-    { name: "Group A", value: 400 },
-    { name: "Group B", value: 300 },
-    { name: "Group C", value: 300 },
-    { name: "Group D", value: 200 }
-  ];
-
+const PieChart = ({ data, wrapperClassName, wrapperStyle, colors }) => {
   return (
     <div
       className={`parent-wrapper${
@@ -75,4 +68,4 @@ const PieChart = ({ wrapperClassName, wrapperStyle, colors }) => {
   );
 };
 
-export default PieChart;
+export default memo(PieChart);
